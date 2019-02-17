@@ -12,6 +12,11 @@ int main(int argc, char *argv[]) {
 		}
 		else{
 			printf("First difference at 0x%x\n",i);
+			printf(">>>%s\n",argv[1]);
+			for(i = 0;i<16&&(c=fgetc(a))!=EOF;i++) printf("%02x ",c);
+			printf("\n>>>%s\n",argv[2]);
+			for(i = 0;i<16&&(c=fgetc(b))!=EOF;i++) printf("%02x ",c);
+			printf("\n");
 		}
 	}
 	else{
