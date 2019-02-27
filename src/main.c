@@ -6,6 +6,7 @@ int readachar(FILE *f, size_t *read, size_t *index, unsigned char *p){
 	if(*read==*index){
 		if(feof(f)) return -1;
 		*read = fread(p,sizeof(unsigned char), BUFSIZE,f);
+		if(*read==0) return -1;
 		*index = 0;
 		if(ferror(f)) return -1;
 		return 0;
@@ -64,7 +65,7 @@ int main(int argc, char *argv[]) {
 			printf("error %d,%d",ferror(a),ferror(b));
 		}
 		if(feof(a)==feof(b)!=0&&*(d+di)==*(c+ci)){
-			printf("files are the same 0x%lx\n",i);
+			printf("files are the same 0x%lx\n",i-1);
 		}
 		else{
 			printf("First difference at 0x%lx 0x%02x!=0x%02x\n",i,*(c+ci),*(d+di));
