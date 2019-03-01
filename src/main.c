@@ -30,7 +30,9 @@ int main(int argc, char *argv[]) {
 		for( i = 0; ci==cr||di==dr||*(d+di)==*(c+ci); i++, ci++, di++){
 			if(ci == cr) {
 				if(feof(a)){
-					printf("eof");
+#ifdef DEBUG
+					printf("eof\n");
+#endif
 					break;
 				} 
 				cr = fread(c, sizeof(unsigned char), BUFSIZE,a);
@@ -41,21 +43,27 @@ int main(int argc, char *argv[]) {
 				}
 				ci = 0;
 				if(ferror(a)){
-					printf("err");
+#ifdef DEBUG
+					printf("err\n");
+#endif
 					err=1;
 					break;
 				}
 			}
 			if(di == dr){
 				if(feof(b)){
-					printf("eof");
+#ifdef DEBUG
+					printf("eof\n");
+#endif
 					break;
 				} 
 				dr = fread(d, sizeof(unsigned char), BUFSIZE,b);
 				if(dr==0)break;
 				di = 0;
 				if(ferror(b)){
-					printf("err");
+#ifdef DEBUG
+					printf("err\n");
+#endif
 					err=1;
 					break;
 				}
