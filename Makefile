@@ -31,4 +31,5 @@ $(BIN)/$(EXECUTABLE): $(SRC)/*
 
 .PHONY: debug
 debug: DEF_FLAG+= DEBUG
+debug: C_FLAGS+= -g
 debug: $(BIN)/$(EXECUTABLE)
