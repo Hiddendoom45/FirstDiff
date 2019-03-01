@@ -6,6 +6,8 @@ SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
 
+DEF_FLAG := 
+
 LIBRARIES	:=
 
 ifeq ($(OS),Windows_NT)
@@ -16,6 +18,7 @@ endif
 
 all: $(BIN)/$(EXECUTABLE)
 
+.PHONY: clean
 clean:
 	-$(RM) $(BIN)/$(EXECUTABLE)
 
@@ -23,4 +26,9 @@ run: all
 	./$(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*
-	$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CC) $(C_FLAGS) $(DEF_FLAG:%=-D%) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+
+
+.PHONY: debug
+debug: DEF_FLAG+= DEBUG
+debug: $(BIN)/$(EXECUTABLE)
