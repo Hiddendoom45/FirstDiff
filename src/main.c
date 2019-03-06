@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define BUFSIZE 4096
 
@@ -27,6 +28,8 @@ int main(int argc, char *argv[]) {
 		*c = 0;
 		*d = 0;
 		int err = 0;
+		cr = fread(c, sizeof(unsigned char), BUFSIZE,a);
+		dr = fread(d, sizeof(unsigned char), BUFSIZE,b);
 		for( i = 0; ci==cr||di==dr||*(d+di)==*(c+ci); i++, ci++, di++){
 			if(ci == cr) {
 				if(feof(a)){
